@@ -5,13 +5,12 @@ import valute from './valute';
 function Konvertor() {
   const [prvaVrednost, setPrvaVrednost] = useState('ETH');
   const [drugaVrednost, setDrugaVrednost] = useState('ETH');
-
   const [prviUnos, setPrviUnos] = useState(1);
-  const [rezultat, setRezultat] = useState(0);
+  const [rezultat, setRezultat] = useState(1);
 
   return (
     <div className='konverter'>
-      <select onChange={(e) => setPrvaVrednost(e.target.value)}>
+      <select value={prvaVrednost} onChange={(e) => setPrvaVrednost(e.target.value)}>
         {Object.keys(valute).map((valuta) => (
           <option>{valuta}</option>
         ))}
@@ -20,13 +19,13 @@ function Konvertor() {
 
       <button onClick={() => setRezultat((Number.parseFloat(prviUnos) * valute[prvaVrednost]) / valute[drugaVrednost])}>Konvertuj</button>
 
-      <select onChange={(e) => setDrugaVrednost(e.target.value)}>
+      <select value={drugaVrednost} onChange={(e) => setDrugaVrednost(e.target.value)}>
         {Object.keys(valute).map((valuta) => (
           <option>{valuta}</option>
         ))}
       </select>
 
-      <input value={rezultat} />
+      <input value={rezultat} readOnly />
     </div>
   );
 }

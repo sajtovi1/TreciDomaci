@@ -1,9 +1,9 @@
 import React from 'react';
 import valute from './valute';
 import './Tabela.css';
+const listaValuta = Object.keys(valute);
 
 function Tabela() {
-  const listaValuta = Object.keys(valute);
 
   return (
     <div>
@@ -14,22 +14,29 @@ function Tabela() {
             <td>{val}</td>
           ))}
         </tr>
-        {listaValuta.map((_, key) => {
+        {listaValuta.map((valuta, index) => {
           return (
-            <tr>
-              <td>{listaValuta[key]}</td>
-              {listaValuta.map((_, index) => (
-                <td>
-                  {console.log(key, index)}
-                  {(valute[listaValuta[key]] / valute[listaValuta[index]]).toFixed(6)}
-                </td>
-              ))}
-            </tr>
+            <RedUTabeli valuta={valuta} key={index} />
           );
         })}
       </table>
     </div>
   );
 }
+
+export function RedUTabeli({ valuta }) {
+  return (
+    <tr>
+      <td>{valuta}</td>
+      {listaValuta.map((_, index) => (
+        <td>
+          {(valute[valuta] / valute[listaValuta[index]]).toFixed(6)}
+        </td>
+      ))}
+    </tr>
+  )
+}
+
+
 
 export default Tabela;
